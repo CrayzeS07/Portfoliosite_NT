@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="uz" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Freelance Portfolio | 3D Glass Style</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        glassdark: 'rgba(15, 23, 42, 0.7)',
+                        glasslight: 'rgba(255, 255, 255, 0.7)',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .light .glass-panel {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 relative overflow-x-hidden transition-colors duration-300">
+
+    <!-- 3D Illustration Canvas System -->
+    <canvas id="canvas3d"></canvas>
+
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 px-4 sm:px-8 py-4 transition-all duration-300">
+        <nav class="max-w-7xl mx-auto glass-panel rounded-2xl px-6 py-4 flex items-center justify-between shadow-2xl">
+            <a href="#home" class="text-xl font-extrabold bg-gradient-to-r from-cyan-400 to-indigo-500 bg-clip-text text-transparent">
+                <i class="fa-solid fa-cube mr-2"></i>DevStudio
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                <a href="#home" class="hover:text-cyan-400 transition">Home</a>
+                <a href="#about" class="hover:text-cyan-400 transition">About</a>
+                <a href="#projects" class="hover:text-cyan-400 transition">Projects</a>
+                <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button id="themeToggle" class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center hover:scale-105 transition">
+                    <i class="fa-solid fa-moon text-cyan-400 dark:hidden"></i>
+                    <i class="fa-solid fa-sun text-amber-400 hidden dark:block"></i>
+                </button>
+                <a href="#contact" class="hidden sm:inline-flex px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold text-sm shadow-lg shadow-cyan-500/20 hover:scale-105 transition">
+                    Hire Me
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="relative z-10 pt-28">
+
+        <!-- HOME SECTION -->
+        <section id="home" class="min-h-[85vh] flex items-center justify-center px-4 sm:px-8 py-12">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-panel text-xs sm:text-sm font-medium text-cyan-400">
+                        <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
+                        <span>Available for Freelance Projects</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
+                        Crafting <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 bg-clip-text text-transparent">Digital Worlds</span> & Web Apps
+                    </h1>
+                    <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0">
+                        Senior Full-Stack Freelancer specializing in modern UI/UX, layered glassmorphism design systems, and high-performance web solutions.
+                    </p>
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#projects" class="px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-bold shadow-xl shadow-cyan-500/20 hover:scale-105 transition">
+                            Explore Projects
+                        </a>
+                        <a href="#contact" class="px-8 py-4 rounded-xl glass-panel font-bold hover:bg-white/10 transition">
+                            Let's Talk
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Layered 3D Card Preview -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="w-full max-w-md glass-panel p-8 rounded-3xl shadow-2xl relative transform hover:rotate-1 transition duration-500">
+                        <div class="absolute -top-4 -right-4 px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-xs font-bold text-white shadow-lg">
+                            PRO FREELANCER
+                        </div>
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-2xl font-bold text-white shadow-inner">
+                                FS
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold">Alex Morgan</h3>
+                                <p class="text-xs text-cyan-400 font-semibold">Fullstack & UI/UX Expert</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-slate-300">
+                            <div class="flex justify-between items-center p-3 rounded-xl bg-slate-900/40 border border-white/5">
+                                <span>Completed Projects</span>
+                                <span class="font-bold text-cyan-400">85+</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 rounded-xl bg-slate-900/40 border border-white/5">
+                                <span>Client Satisfaction</span>
+                                <span class="font-bold text-emerald-400">99.8%</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 rounded-xl bg-slate-900/40 border border-white/5">
+                                <span>GitHub Contribution</span>
+                                <span class="font-bold text-indigo-400">1,420 Commits</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="py-24 px-4 sm:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold mb-4">About Me & Skills</h2>
+                    <p class="text-slate-400 text-sm sm:text-base">Combining code structure, glassmorphic aesthetics, and robust architectures.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="glass-panel p-8 rounded-3xl shadow-xl space-y-4 hover:border-cyan-500/50 transition">
+                        <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Frontend Mastery</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Expert in HTML5, Tailwind CSS, JavaScript (ES6+), React, and Vue, building lightning-fast reactive interfaces.
+                        </p>
+                    </div>
+
+                    <div class="glass-panel p-8 rounded-3xl shadow-xl space-y-4 hover:border-indigo-500/50 transition">
+                        <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Backend & API</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Node.js, Express, RESTful APIs, databases, and secure authentication workflows ensuring data integrity.
+                        </p>
+                    </div>
+
+                    <div class="glass-panel p-8 rounded-3xl shadow-xl space-y-4 hover:border-purple-500/50 transition">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-paint-brush"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">UI/UX & 3D Systems</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Layered element design, modern glass styles, and dynamic canvas animations for deeply immersive user experiences.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- GitHub Stats Badge Integration -->
+                <div class="mt-16 glass-panel p-8 rounded-3xl text-center space-y-6">
+                    <h3 class="text-xl font-bold">GitHub Activity & Stats</h3>
+                    <div class="flex flex-wrap justify-center gap-6 items-center">
+                        <img src="https://github-readme-stats.vercel.app/api?username=github&show_icons=true&theme=radical" alt="GitHub Stats" class="rounded-xl shadow-lg max-w-full">
+                        <img src="https://github-readme-streak-stats.herokuapp.com/?user=github&theme=radical" alt="GitHub Streak" class="rounded-xl shadow-lg max-w-full">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION (Slider System) -->
+        <section id="projects" class="py-24 px-4 sm:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-16">
+                    <div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold mb-2">Featured Projects</h2>
+                        <p class="text-slate-400">Swipe or click arrows to browse top freelance works.</p>
+                    </div>
+                    <div class="flex space-x-3 mt-4 md:mt-0">
+                        <button id="prevBtn" class="w-12 h-12 rounded-2xl glass-panel flex items-center justify-center hover:bg-white/10 transition">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <button id="nextBtn" class="w-12 h-12 rounded-2xl glass-panel flex items-center justify-center hover:bg-white/10 transition">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Slider Track Container -->
+                <div class="overflow-hidden relative">
+                    <div id="sliderTrack" class="flex transition-transform duration-500 ease-out gap-6">
+                        
+                        <!-- Project Card 1 -->
+                        <div class="min-w-full md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] glass-panel p-6 rounded-3xl flex flex-col justify-between">
+                            <div>
+                                <div class="h-48 rounded-2xl bg-gradient-to-tr from-cyan-500/30 to-blue-600/30 mb-6 flex items-center justify-center text-cyan-400 text-4xl">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                                <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400">E-Commerce</span>
+                                <h3 class="text-xl font-bold mt-3 mb-2">Glassmorphism Store</h3>
+                                <p class="text-slate-400 text-sm">Full-featured digital marketplace built with Tailwind CSS and advanced product filtering.</p>
+                            </div>
+                            <div class="flex justify-between items-center mt-6 pt-4 border-t border-white/10">
+                                <span class="text-xs text-slate-400">HTML / Tailwind / JS</span>
+                                <a href="https://github.com" target="_blank" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-cyan-500 hover:text-white transition">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Project Card 2 -->
+                        <div class="min-w-full md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] glass-panel p-6 rounded-3xl flex flex-col justify-between">
+                            <div>
+                                <div class="h-48 rounded-2xl bg-gradient-to-tr from-indigo-500/35 to-purple-600/30 mb-6 flex items-center justify-center text-indigo-400 text-4xl">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                </div>
+                                <span class="text-xs font-semibold px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-400">Analytics SaaS</span>
+                                <h3 class="text-xl font-bold mt-3 mb-2">CryptoMetrics 3D</h3>
+                                <p class="text-slate-400 text-sm">Real-time cryptocurrency tracking dashboard with glass panels and interactive canvas graphs.</p>
+                            </div>
+                            <div class="flex justify-between items-center mt-6 pt-4 border-t border-white/10">
+                                <span class="text-xs text-slate-400">Tailwind / ChartJS</span>
+                                <a href="https://github.com" target="_blank" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-indigo-500 hover:text-white transition">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Project Card 3 -->
+                        <div class="min-w-full md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] glass-panel p-6 rounded-3xl flex flex-col justify-between">
+                            <div>
+                                <div class="h-48 rounded-2xl bg-gradient-to-tr from-purple-500/30 to-pink-600/30 mb-6 flex items-center justify-center text-purple-400 text-4xl">
+                                    <i class="fa-solid fa-gamepad"></i>
+                                </div>
+                                <span class="text-xs font-semibold px-3 py-1 rounded-full bg-purple-500/20 text-purple-400">Interactive Game</span>
+                                <h3 class="text-xl font-bold mt-3 mb-2">Neon Orbit Game</h3>
+                                <p class="text-slate-400 text-sm">Browser-based arcade game utilizing HTML5 Canvas and responsive touch controls.</p>
+                            </div>
+                            <div class="flex justify-between items-center mt-6 pt-4 border-t border-white/10">
+                                <span class="text-xs text-slate-400">Canvas / Vanilla JS</span>
+                                <a href="https://github.com" target="_blank" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-purple-500 hover:text-white transition">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="py-24 px-4 sm:px-8">
+            <div class="max-w-4xl mx-auto glass-panel p-8 sm:p-12 rounded-3xl shadow-2xl">
+                <div class="text-center max-w-xl mx-auto mb-12">
+                    <h2 class="text-3xl font-extrabold mb-3">Let's Work Together</h2>
+                    <p class="text-slate-400 text-sm">Have a project in mind or want to collaborate? Send a message below.</p>
+                </div>
+
+                <form id="contactForm" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-2">YOUR NAME</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-white/10 focus:border-cyan-500 focus:outline-none text-sm transition" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-2">YOUR EMAIL</label>
+                            <input type="email" required class="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-white/10 focus:border-cyan-500 focus:outline-none text-sm transition" placeholder="john@example.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-2">MESSAGE</label>
+                        <textarea rows="4" required class="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-white/10 focus:border-cyan-500 focus:outline-none text-sm transition" placeholder="Tell me about your project..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 font-bold text-white shadow-xl shadow-cyan-500/20 hover:scale-[1.01] transition">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 py-8 text-center text-xs text-slate-500 border-t border-white/5">
+        <p>&copy; 2026 DevStudio. All rights reserved. Built with Tailwind CSS & 3D Glass Style.</p>
+    </footer>
+
+    <!-- JavaScript Link -->
+    <script src="script.js"></script>
+</body>
+</html>
